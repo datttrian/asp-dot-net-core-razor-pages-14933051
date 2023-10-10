@@ -1,3 +1,5 @@
-mkdir MoviesApp
-cd MoviesApp
-dotnet new webapp
+dotnet new webapp -n MoviesApp
+dotnet new page -n 
+dotnet new page -n AddMovie
+dotnet new page -n Movie
+dotnet new page -n Movies
