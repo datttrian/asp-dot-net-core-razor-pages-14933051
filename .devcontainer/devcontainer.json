@@ -1,0 +1,41 @@
+{
+	"name": "ASPNET",
+	// Configure tool-specific properties.
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			// Update 'VARIANT' to pick a .NET Core version: 3.1, 6.0
+			// Append -bullseye or -focal to pin to an OS version.
+			"VARIANT": "6.0-bullseye",
+			// Options
+			"NODE_VERSION": "lts/*"
+		}
+	},
+	"extensions": [
+		"GitHub.github-vscode-theme",
+		"ms-dotnettools.vscode-dotnet-pack",
+		"adrianwilczynski.asp-net-core-snippet-pack",
+		"formulahendry.dotnet",
+		"formulahendry.dotnet-test-explorer",
+		"kreativ-software.csharpextensions",
+		"ms-dotnettools.vscodeintellicode-csharp",
+		"ms-dotnettools.csdevkit",
+		"ms-dotnettools.csharp",
+		"ms-dotnettools.vscode-dotnet-runtime",
+		"streetsidesoftware.code-spell-checker",
+		"EditorConfig.EditorConfig",
+		"jorgeserrano.vscode-csharp-snippets",
+		"vain0x.csharp-gen-ctor",
+		"afmicc.GetterAndSetterGenerator"
+	],
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "gcc -v",
+	"onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc && dotnet dev-certs https", //Set Terminal Prompt to $
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"powershell": "latest"
+	}
+}
