@@ -6,14 +6,14 @@ namespace MyApp.Namespace
 {
     public class AddMovieModel : PageModel
     {
-        // [BindProperty]
-        // public string Title { get; set; }
-        // [BindProperty]
-        // public int Rate { get; set; }
-        // [BindProperty]
-        // public string Description { get; set; }
         [BindProperty]
-        public Movie Movie {get;set;}
+        public string Title { get; set; }
+        [BindProperty]
+        public int Rate { get; set; }
+        [BindProperty]
+        public string Description { get; set; }
+        // [BindProperty]
+        // public Movie Movie {get;set;}
         // public void OnGetMyOnClick()
         // {
         //     string stopHere = "";
@@ -25,10 +25,15 @@ namespace MyApp.Namespace
 
         public IActionResult OnPost()
         {
-            // string value = $"{Title} - {Rate} - {Description}";
-            string value = $"{Movie.Title} - {Movie.Rate} - {Movie.Description}";
-            return Page();
-            // return Redirect("Movies");
+            string value = $"{Title} - {Rate} - {Description}";
+            // string value = $"{Movie.Title} - {Movie.Rate} - {Movie.Description}";
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            // return Page();
+            return Redirect("Movies");
         }
     }
 }
