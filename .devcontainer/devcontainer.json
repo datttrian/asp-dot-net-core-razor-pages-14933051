@@ -20,7 +20,10 @@
 		"jorgeserrano.vscode-csharp-snippets",
 		"vain0x.csharp-gen-ctor",
 		"afmicc.GetterAndSetterGenerator"
-	]
+	],
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

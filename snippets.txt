@@ -3,3 +3,20 @@ dotnet new page -n
 dotnet new page -n AddMovie
 dotnet new page -n Movie
 dotnet new page -n Movies
+
+
+docker pull mcr.microsoft.com/mssql/server
+
+docker run -e -s ETR/SQLSERVER -d MoviesApp-Db
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_PID=Developer" -e "MSSQL_AGENT_ENABLED=True" -e "MSSQL_COLLATION_NAME=SQL_Latin1_General_CP1_CI_AS" -p 1433:1433 --name asp-docker -d mcr.microsoft.com/mssql/server:latest -s ETR/SQLSERVER -d MoviesApp-Db
+
+Data Source=ETR/SQLSERVER;Initial Catalog=MoviesApp-Db;Integrated Security=True;Pooling=False;
+
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet tool install dotnet-ef
+
+dotnet new tool-manifest
+dotnet ef migrations add YourMigrationName
+
