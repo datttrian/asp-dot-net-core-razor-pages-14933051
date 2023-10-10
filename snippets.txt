@@ -1,0 +1,3 @@
+mkdir MoviesApp
+cd MoviesApp
+dotnet new webapp
