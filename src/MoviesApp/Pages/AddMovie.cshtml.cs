@@ -11,6 +11,10 @@ namespace MyApp.Namespace
         public int Rate { get; set; }
         [BindProperty]
         public string Description { get; set; }
+        // public void OnGetMyOnClick()
+        // {
+        //     string stopHere = "";
+        // }
         public void OnGet()
         {
             Title = "Welcome";
