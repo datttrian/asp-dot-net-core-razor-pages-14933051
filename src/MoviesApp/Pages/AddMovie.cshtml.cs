@@ -1,30 +1,29 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MoviesApp.Data.Models;
 using MoviesApp.Data;
+using MoviesApp.Data.Models;
+using MoviesApp.Services;
 
-namespace MyApp.Namespace
+namespace MoviesApp.Pages
 {
     public class AddMovieModel : PageModel
     {
         [BindProperty]
         public string Title { get; set; }
+
         [BindProperty]
         public int Rate { get; set; }
+
         [BindProperty]
         public string Description { get; set; }
-        // [BindProperty]
-        // public Movie Movie {get;set;}
-        // public void OnGetMyOnClick()
-        // {
-        //     string stopHere = "";
-        // }
 
-        private ApplicationDbContext _context;
-        public AddMovie(ApplicationDbContext context)
+        private IMoviesService _service;
+        public AddMovieModel(IMoviesService service)
         {
-            _context = context;
+            _service = service;
         }
+
+
         public void OnGet()
         {
             // Title = "Welcome";
@@ -32,9 +31,6 @@ namespace MyApp.Namespace
 
         public IActionResult OnPost()
         {
-            // string value = $"{Title} - {Rate} - {Description}";
-            // string value = $"{Movie.Title} - {Movie.Rate} - {Movie.Description}";
-
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -42,13 +38,12 @@ namespace MyApp.Namespace
 
             var movie = new Movie()
             {
-                Title = Title;
-                Rate = Rate;
+                Title = Title,
+                Rate = Rate,
                 Description = Description
-            }
-            _context.Movies.Add(movie);
-            _context.SaveChanges();
-            // return Page();
+            };
+            _service.Add(movie);
+
             return Redirect("Movies");
         }
     }
